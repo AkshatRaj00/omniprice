@@ -3,4 +3,4 @@ uvicorn[standard]
 httpx
 beautifulsoup4
 python-dotenv
-pydantic>=2
+pydantic>=2.13.5
