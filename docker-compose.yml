@@ -1,0 +1,72 @@
+version: '3.9'
+
+networks:
+  perimeter-net:
+    driver: bridge
+    internal: false
+  isolation-net:
+    driver: bridge
+    internal: true
+
+services:
+  # Layer 1 & 2: Reverse Proxy & WAF Bastion
+  edge-shield:
+    image: nginx:alpine-slim
+    container_name: omniprice-shield
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - perimeter-net
+    depends_on:
+      - omniprice-core
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+      - CHOWN
+      - SETGID
+      - SETUID
+    security_opt:
+      - no-new-privileges:true
+
+  # Layer 3 & 4: Core Neural Engine (Sandboxed & Isolated)
+  omniprice-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omniprice-core
+    restart: always
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - WHATSAPP_GATEWAY=http://whatsapp-gateway:5001/send-message
+    volumes:
+      - ./omnidata.db:/app/omnidata.db
+    networks:
+      - perimeter-net
+      - isolation-net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 1024m
+    cpus: 1.5
+
+  # Layer 5: WhatsApp Gateway (Internal Network Only)
+  whatsapp-gateway:
+    build:
+      context: ./whatsapp_gateway
+    container_name: omniprice-whatsapp
+    restart: always
+    volumes:
+      - ./whatsapp_gateway/auth_info_baileys:/app/auth_info_baileys
+    networks:
+      - isolation-net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 512m

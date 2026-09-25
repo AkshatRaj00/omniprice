@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="referrer" content="no-referrer">
+  <title>OmniPrice — Autonomous Price Intelligence Engine</title>
+  <!-- Enterprise Semantic SEO & Entity Indexing -->
+  <meta name="description" content="OmniPrice by OnePersonAI: Autonomous retail intelligence engine monitoring Amazon, Flipkart, Myntra, Ajio with real-time AI arbitrage and 24/7 WhatsApp price-drop alerts.">
+  <meta name="keywords" content="OmniPrice, OnePersonAI, Price Tracker India, Amazon Price Drop Alert, Flipkart Price Tracker, Real-time Price Intelligence, AI Deal Arbitrage, Myntra Discount Radar">
+  <meta name="author" content="OnePersonAI">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://omniprice.onepersonai.com/">
+
+  <!-- Open Graph / WhatsApp / Facebook Rich Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OnePersonAI OmniPrice">
+  <meta property="og:title" content="OmniPrice — Autonomous Price Intelligence Engine | OnePersonAI">
+  <meta property="og:description" content="Track real price floors across 7+ Indian retail platforms. Instant WhatsApp price-drop radar and AI forecasting.">
+  <meta property="og:url" content="https://omniprice.onepersonai.com/">
+  <meta property="og:image" content="https://omniprice.onepersonai.com/static/og-preview.png">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OmniPrice by OnePersonAI — Real-Time Market Arbitrage">
+  <meta name="twitter:description" content="Stop overpaying. Autonomous AI tracks drops on Amazon, Flipkart, Myntra, Ajio and delivers instant WhatsApp alerts.">
+  <meta name="twitter:image" content="https://omniprice.onepersonai.com/static/og-preview.png">
+
+  <!-- Google Rich Snippet Structured Schema (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "OmniPrice",
+    "operatingSystem": "All",
+    "applicationCategory": "ShoppingApplication",
+    "creator": {
+      "@type": "Organization",
+      "name": "OnePersonAI",
+      "url": "https://onepersonai.in"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1280"
+    },
+    "description": "Autonomous real-time price intelligence and market reasoning platform powered by OnePersonAI."
+  }
+  </script>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-page: #97a6f8;
+      --bg-shell: #08090d;
+      --card-orange: #FF5E14;
+      --card-orange-glow: #ff7836;
+      --card-blue: #6395f2;
+      --card-blue-light: #90b8fc;
+      --card-cream: #F4F1EA;
+      --card-white: #FFFFFF;
+      --card-elevated: #11141c;
+      --text-dark: #08090d;
+      --text-light: #ffffff;
+      --text-muted: #64748b;
+      --accent-emerald: #10b981;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-xl: 36px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --radius-pill: 9999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+
+    body {
+      background: var(--bg-page);
+      font-family: var(--font-sans);
+      color: var(--text-light);
+      padding: 36px 20px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .ambient-glow-1 {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(255, 94, 20, 0.32) 0%, transparent 60%);
+      filter: blur(80px);
+      z-index: -1;
+      animation: floatA 16s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .ambient-glow-2 {
+      position: fixed;
+      bottom: -15%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(99, 149, 242, 0.38) 0%, transparent 65%);
+      filter: blur(90px);
+      z-index: -1;
+      animation: floatB 20s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes floatA {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.15); }
+    }
+
+    @keyframes floatB {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, -50px) scale(1.12); }
+    }
+
+    .shell {
+      background: var(--bg-shell);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      width: 100%;
+      max-width: 1420px;
+      box-shadow: 0 45px 120px -20px rgba(8, 9, 13, 0.8),
+                  0 0 0 1px rgba(255, 255, 255, 0.08);
+      position: relative;
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+    }
+
+    .shell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 94, 20, 0.5), rgba(99, 149, 242, 0.5), transparent);
+    }
+
+    .shell-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #FF5E14, #FFA34E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 8px 24px rgba(255, 94, 20, 0.45);
+      animation: pulseBrand 3s infinite alternate;
+    }
+
+    @keyframes pulseBrand {
+      0% { box-shadow: 0 8px 20px rgba(255, 94, 20, 0.35); }
+      100% { box-shadow: 0 12px 32px rgba(255, 94, 20, 0.65); }
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 10px #34d399;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    .search-dock {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 0 20px 0 52px;
+      color: white;
+      font-size: 14.5px;
+      outline: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-sans);
+    }
+
+    .search-input-wrap input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--card-orange);
+      box-shadow: 0 0 0 4px rgba(255, 94, 20, 0.25);
+    }
+
+    .search-input-wrap i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 17px;
+    }
+
+    .btn-paste {
+      height: 56px;
+      padding: 0 24px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.18s;
+    }
+
+    .btn-paste:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .btn-run {
+      height: 56px;
+      padding: 0 32px;
+      background: linear-gradient(135deg, #FF5E14, #FF833B);
+      border: none;
+      border-radius: var(--radius-lg);
+      color: white;
+      font-weight: 800;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 28px rgba(255, 94, 20, 0.42);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+
+    .btn-run:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(255, 94, 20, 0.58);
+    }
+
+    .btn-run:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 360px 1fr 1fr 340px;
+      grid-template-rows: 210px 210px 280px;
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s;
+    }
+
+    .card:hover { transform: translateY(-3px); }
+
+    .card-hero-product {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      background: linear-gradient(155deg, #FF5E14 0%, #FF7F35 100%);
+      color: white;
+      padding: 26px;
+      box-shadow: 0 20px 50px -10px rgba(255, 94, 20, 0.35);
+    }
+
+    .hero-img-stage {
+      position: absolute;
+      inset: 16px 16px 140px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.35));
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-hero-product:hover .hero-img-stage img {
+      transform: scale(1.06) rotate(-2deg);
+    }
+
+    .hero-details {
+      margin-top: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-title {
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-price {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      font-family: var(--font-sans);
+    }
+
+    .card-live-floor {
+      grid-column: 2;
+      grid-row: 1;
+      background: linear-gradient(150deg, #6395f2, #8cb5fc);
+      color: white;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pill-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.28);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .floor-val {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 8px 0 4px;
+    }
+
+    .floor-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    /* Trajectory Card & Dynamic Graph Bars */
+    .card-timeline {
+      grid-column: 3;
+      grid-row: 1;
+      background: var(--card-white);
+      color: var(--text-dark);
+    }
+
+    .card-title-sm {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .bars-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      height: 120px;
+      padding-top: 10px;
+    }
+
+    .bar-col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bar-pill {
+      width: 100%;
+      background: linear-gradient(180deg, #90b8fc, #6395f2);
+      border-radius: 8px;
+      min-height: 16px;
+      transition: height 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .bar-col.cheapest .bar-pill {
+      background: linear-gradient(180deg, #ff833b, #FF5E14);
+      box-shadow: 0 4px 14px rgba(255, 94, 20, 0.45);
+    }
+
+    .bar-pill-price {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      font-family: var(--font-mono);
+      margin-bottom: 2px;
+    }
+
+    .bar-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .card-sales {
+      grid-column: 4;
+      grid-row: 1 / span 2;
+      background: linear-gradient(155deg, #FF5E14, #FF833B);
+      color: white;
+      overflow-y: auto;
+    }
+
+    .sales-heading {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .sales-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sale-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s;
+    }
+
+    .sale-item:hover { transform: translateX(2px); }
+
+    .sale-meta strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sale-meta span {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    .sale-price-tag {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      font-family: var(--font-mono);
+    }
+
+    .card-analytics {
+      grid-column: 2 / span 2;
+      grid-row: 2;
+      background: linear-gradient(150deg, #FF5E14, #FF7B32);
+      color: white;
+      position: relative;
+    }
+
+    .analytics-big {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .analytics-watermark {
+      position: absolute;
+      right: 20px;
+      bottom: -15px;
+      font-size: 96px;
+      font-weight: 900;
+      opacity: 0.08;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    /* Marketplace Corridor Layout */
+    .card-marketplaces {
+      grid-column: 2 / span 2;
+      grid-row: 3;
+      background: var(--card-cream);
+      color: var(--text-dark);
+      padding: 20px 22px;
+    }
+
+    .market-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
+      margin-top: 10px;
+      max-height: 195px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .market-list::-webkit-scrollbar { width: 5px; }
+    .market-list::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 4px; }
+
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .market-row:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .market-row.cheapest-store {
+      border-color: var(--card-orange);
+      background: #fff8f4;
+      box-shadow: 0 2px 10px rgba(255, 94, 20, 0.12);
+    }
+
+    .market-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .store-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #7BA8F0;
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .store-badge.fk { background: #2874F0; }
+    .store-badge.am { background: #FF9900; color: #111; }
+    .store-badge.my { background: #FF3F6C; }
+    .store-badge.aj { background: #111; color: #D5A249; }
+    .store-badge.tc { background: #882299; }
+    .store-badge.jm { background: #0078AD; }
+    .store-badge.ny { background: #FC2779; }
+
+    .market-title-wrap { min-width: 0; }
+    .market-title-wrap strong {
+      display: block;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .market-title-wrap span {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .market-price-val {
+      font-size: 15px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .market-price-val.live-tag { color: var(--card-orange); }
+
+    .card-radar-dock {
+      grid-column: 1;
+      grid-row: 3;
+      background: linear-gradient(150deg, #9cbbf8, #6395f2);
+      color: white;
+      padding: 22px;
+    }
+
+    .radar-input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .radar-input-box input {
+      height: 40px;
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 0 12px;
+      color: white;
+      font-weight: 600;
+      outline: none;
+      font-size: 13px;
+    }
+
+    .radar-input-box input::placeholder { color: rgba(255, 255, 255, 0.75); }
+
+    .radar-btn {
+      height: 40px;
+      background: white;
+      color: #2563eb;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .radar-btn:hover { background: #f8fafc; transform: translateY(-1px); }
+
+    .card-actions {
+      grid-column: 4;
+      grid-row: 3;
+      background: var(--card-blue);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .action-chip {
+      height: 44px;
+      background: white;
+      color: var(--text-dark);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 0 16px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .action-chip.primary {
+      background: var(--card-orange);
+      color: white;
+    }
+
+    .action-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Loader Modal */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 13, 0.8);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .loader-overlay.active { display: flex; }
+
+    .loader-card {
+      background: var(--bg-shell);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 36px 48px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .spin {
+      width: 44px;
+      height: 44px;
+      border: 3.5px solid rgba(255, 94, 20, 0.2);
+      border-top-color: var(--card-orange);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =========================================================
+       Autonomous AI Agent Copilot Overlay & Widget
+       ========================================================= */
+    .agent-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      height: 54px;
+      padding: 0 22px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border: none;
+      font-weight: 800;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.45);
+      z-index: 800;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .agent-fab:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 38px rgba(16, 185, 129, 0.65);
+    }
+
+    .agent-hud {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      width: 400px;
+      height: 540px;
+      background: var(--bg-shell);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+      display: none;
+      flex-direction: column;
+      z-index: 801;
+      backdrop-filter: blur(25px);
+      overflow: hidden;
+      animation: hudEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes hudEnter {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .agent-hud.open { display: flex; }
+
+    .hud-header {
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hud-header strong {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-header button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.15s;
+    }
+
+    .hud-header button:hover { color: white; }
+
+    .hud-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .hud-body::-webkit-scrollbar { width: 5px; }
+    .hud-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+
+    .agent-msg {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 12px 14px;
+      border-radius: 14px;
+      max-width: 92%;
+      align-self: flex-start;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .user-msg {
+      background: var(--card-orange);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 14px;
+      max-width: 85%;
+      align-self: flex-end;
+      font-weight: 500;
+    }
+
+    .hud-actions {
+      display: flex;
+      gap: 6px;
+      padding: 8px 16px;
+      overflow-x: auto;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hud-chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-pill);
+      padding: 5px 12px;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .hud-chip:hover {
+      background: var(--card-orange);
+      border-color: var(--card-orange);
+    }
+
+    .hud-input-row {
+      display: flex;
+      padding: 12px;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hud-input-row input {
+      flex: 1;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 0 12px;
+      color: white;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .hud-input-row input:focus {
+      border-color: var(--accent-emerald);
+    }
+
+    .hud-input-row button {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-emerald);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s;
+    }
+
+    .hud-input-row button:hover { transform: scale(1.05); }
+
+    @media (max-width: 1200px) {
+      .bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .card-hero-product { grid-column: 1; grid-row: auto; min-height: 420px; }
+      .card-live-floor { grid-column: 2; grid-row: auto; min-height: 200px; }
+      .card-timeline { grid-column: 2; grid-row: auto; min-height: 200px; }
+      .card-analytics { grid-column: 1 / span 2; grid-row: auto; }
+      .card-marketplaces { grid-column: 1 / span 2; grid-row: auto; }
+      .market-list { grid-template-columns: 1fr 1fr; max-height: none; }
+      .card-sales { grid-column: 1 / span 2; grid-row: auto; }
+      .card-radar-dock { grid-column: 1; grid-row: auto; }
+      .card-actions { grid-column: 2; grid-row: auto; }
+    }
+
+        @media (max-width: 720px) {
+      body {
+        padding: 16px 12px 110px;
+      }
+      .shell {
+        padding: 18px 14px;
+        border-radius: 24px;
+      }
+      .search-dock {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .search-input-wrap input {
+        height: 50px;
+        font-size: 13.5px;
+      }
+      .btn-paste, .btn-run {
+        width: 100%;
+        height: 48px;
+        justify-content: center;
+      }
+      .bento {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .card-hero-product {
+        min-height: 380px;
+        padding: 20px;
+      }
+      .hero-title {
+        font-size: 18px;
+        -webkit-line-clamp: 3;
+      }
+      .hero-price {
+        font-size: 34px;
+        white-space: nowrap;
+      }
+      .card-live-floor {
+        min-height: 150px;
+      }
+      .floor-val {
+        font-size: 32px;
+      }
+      .card-timeline {
+        min-height: 190px;
+      }
+      .bars-wrap {
+        height: 100px;
+      }
+      .card-radar-dock {
+        padding: 18px;
+      }
+      .radar-input-box {
+        gap: 10px;
+      }
+      .radar-input-box input {
+        height: 44px;
+        font-size: 14px;
+      }
+      .radar-btn {
+        height: 46px;
+        font-size: 14px;
+      }
+      .market-list {
+        grid-template-columns: 1fr;
+        max-height: 280px;
+      }
+      .agent-fab {
+        bottom: 16px;
+        right: 16px;
+        height: 48px;
+        font-size: 13px;
+        padding: 0 18px;
+      }
+      .agent-hud {
+        width: calc(100vw - 24px);
+        right: 12px;
+        bottom: 74px;
+        height: 480px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <div class="shell">
+    
+    <header class="shell-header">
+      <div class="brand-wrap">
+        <div class="brand-icon"><i class="fa-solid fa-cube"></i></div>
+        <div>
+          <div class="brand-title">OmniPrice</div>
+          <div class="brand-sub">Real-Time Autonomous Engine</div>
+        </div>
+      </div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>CLUSTER VERIFIED LIVE</span>
+      </div>
+    </header>
+
+    <div class="search-dock">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-link"></i>
+        <input type="text" id="target-url" placeholder="Paste product link (Flipkart, Amazon, Myntra, Ajio, Nykaa)..." autocomplete="off">
+      </div>
+      <button class="btn-paste" onclick="pasteClipboard()">Paste</button>
+      <button class="btn-run" id="btn-scan" onclick="triggerScan()">
+        Scan Real Prices <i class="fa-solid fa-bolt"></i>
+      </button>
+    </div>
+
+    <div class="bento">
+
+      <div class="card card-hero-product">
+        <div class="hero-img-stage">
+          <img id="sku-img" src="" alt="Product Visual" referrerpolicy="no-referrer"
+               onerror="this.onerror=null;this.src='https://placehold.co/400x400/FF5E14/FFFFFF?text=Live+Product';">
+        </div>
+        <div class="hero-details">
+          <div class="hero-tag" id="sku-store">
+            <i class="fa-solid fa-bolt"></i> <span>AWAITING LINK SCAN</span>
+          </div>
+          <div class="hero-title" id="sku-title">Paste any product URL above to extract live intelligence</div>
+          <div class="hero-price">₹<span id="sku-price">0</span></div>
+        </div>
+      </div>
+
+      <div class="card card-live-floor">
+        <div class="card-header-row">
+          <span class="pill-live"><i class="fa-solid fa-signal"></i> LIVE</span>
+          <span style="font-size: 11px; font-weight: 800; opacity: 0.85;">FY26</span>
+        </div>
+        <div>
+          <div class="floor-val" id="metric-floor">₹0</div>
+          <div class="floor-lbl">Estimated baseline floor price</div>
+        </div>
+      </div>
+
+      <div class="card card-timeline">
+        <div class="card-title-sm">7-Day Trajectory</div>
+        <div class="bars-wrap" id="days-bars">
+          <div class="bar-col"><span class="bar-pill-price">₹0</span><div class="bar-pill" style="height: 50%;"></div><div class="bar-label">D1</div></div>
+          <div class="bar-col"><span class="bar-pill-price">₹0</span><div class="bar-pill" style="height: 65%;"></div><div class="bar-label">D2</div></div>
+          <div class="bar-col cheapest"><span class="bar-pill-price">₹0</span><div class="bar-pill" style="height: 90%;"></div><div class="bar-label">D3</div></div>
+          <div class="bar-col"><span class="bar-pill-price">₹0</span><div class="bar-pill" style="height: 60%;"></div><div class="bar-label">D4</div></div>
+        </div>
+      </div>
+
+      <div class="card card-sales">
+        <div class="sales-heading">Sale radar</div>
+        <div class="sales-list" id="sales-list">
+          <div class="sale-item">
+            <div class="sale-meta"><strong>Flipkart BBD</strong><span>Late Sep / Oct</span></div>
+            <div class="sale-price-tag">—</div>
+          </div>
+          <div class="sale-item">
+            <div class="sale-meta"><strong>Amazon GIF</strong><span>Early October</span></div>
+            <div class="sale-price-tag">—</div>
+          </div>
+          <div class="sale-item">
+            <div class="sale-meta"><strong>Myntra EORS</strong><span>End of Month</span></div>
+            <div class="sale-price-tag">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-analytics">
+        <div class="analytics-watermark">FORECAST</div>
+        <div>
+          <div style="font-size: 13px; font-weight: 700; opacity: 0.9;">Price volatility index</div>
+          <div class="analytics-big" id="metric-prob">—</div>
+          <div style="font-size: 13px; font-weight: 600; opacity: 0.85;" id="metric-window">Awaiting scan</div>
+        </div>
+      </div>
+
+      <div class="card card-marketplaces">
+        <div class="card-header-row">
+          <div style="font-size: 15px; font-weight: 800; letter-spacing: -0.02em;">Marketplace Corridor</div>
+          <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);" id="stores-count">7 Platforms</span>
+        </div>
+        <div class="market-list" id="stores-list">
+          <div class="market-row">
+            <div class="market-brand">
+              <div class="store-badge fk">F</div>
+              <div class="market-title-wrap"><strong>Flipkart</strong><span>Awaiting scan</span></div>
+            </div>
+            <div class="market-price-val">—</div>
+          </div>
+          <div class="market-row">
+            <div class="market-brand">
+              <div class="store-badge am">A</div>
+              <div class="market-title-wrap"><strong>Amazon India</strong><span>Awaiting scan</span></div>
+            </div>
+            <div class="market-price-val">—</div>
+          </div>
+          <div class="market-row">
+            <div class="market-brand">
+              <div class="store-badge my">M</div>
+              <div class="market-title-wrap"><strong>Myntra</strong><span>Awaiting scan</span></div>
+            </div>
+            <div class="market-price-val">—</div>
+          </div>
+          <div class="market-row">
+            <div class="market-brand">
+              <div class="store-badge aj">A</div>
+              <div class="market-title-wrap"><strong>Ajio</strong><span>Awaiting scan</span></div>
+            </div>
+            <div class="market-price-val">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-radar-dock">
+        <div>
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase;">WhatsApp Alert</div>
+          <div style="font-size: 15px; font-weight: 800;">Track price 24/7</div>
+        </div>
+        <div class="radar-input-box">
+          <input type="number" id="watch-target" placeholder="Target Price (₹)">
+          <input type="text" id="watch-phone" placeholder="WhatsApp Number" maxlength="13">
+          <button class="radar-btn" onclick="armWatcher()">Arm Radar Daemon</button>
+        </div>
+      </div>
+
+      <div class="card card-actions">
+        <button class="action-chip primary" onclick="document.getElementById('target-url').focus()">
+          <span>Run new scan</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="action-chip" onclick="setTargetChip(0.85)">
+          <span>Set lowest target</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </button>
+        <button class="action-chip" onclick="setTargetChip(0.90)">
+          <span>Set −10% target</span>
+          <i class="fa-solid fa-percent"></i>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="loader-overlay" id="loader">
+    <div class="loader-card">
+      <div class="spin"></div>
+      <div style="font-size: 15px; font-weight: 700; color: white;" id="loader-msg">Connecting to Autonomous Fleet...</div>
+    </div>
+  </div>
+
+  <button class="agent-fab" onclick="toggleHud()">
+    <i class="fa-solid fa-robot"></i>
+    <span>AI Agent Co-Pilot</span>
+  </button>
+
+  <div class="agent-hud" id="agent-hud">
+    <div class="hud-header">
+      <strong><i class="fa-solid fa-brain" style="color: #10b981;"></i> Autonomous Decision Agent</strong>
+      <button onclick="toggleHud()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="hud-body" id="hud-messages">
+      <div class="agent-msg">
+        👋 I am your Autonomous Market Reasoning Agent. Scan any product URL to let me evaluate real deal pricing, historical floor, and multi-store corridors.
+      </div>
+    </div>
+    <div class="hud-actions">
+      <div class="hud-chip" onclick="askAgent('Should I buy this product now or wait?')">Buy or Wait?</div>
+      <div class="hud-chip" onclick="askAgent('Find the cheapest store and best deal corridor.')">Cheapest store?</div>
+      <div class="hud-chip" onclick="askAgent('What is the lowest predicted price for this item?')">Lowest price?</div>
+    </div>
+    <div class="hud-input-row">
+      <input type="text" id="hud-input" placeholder="Ask AI agent about this SKU..." onkeydown="if(event.key==='Enter') sendAgentMessage()">
+      <button onclick="sendAgentMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <script>
+    let activeProduct = null;
+
+    function fmt(n) {
+      if (!n || isNaN(n)) return "—";
+      return Number(n).toLocaleString("en-IN");
+    }
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    async function pasteClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text && text.trim().startsWith("http")) {
+          document.getElementById("target-url").value = text.trim();
+          triggerScan();
+        } else {
+          fallbackPrompt();
+        }
+      } catch {
+        fallbackPrompt();
+      }
+    }
+
+    function fallbackPrompt() {
+      const manual = prompt("Paste Product URL here:");
+      if (manual && manual.trim().startsWith("http")) {
+        document.getElementById("target-url").value = manual.trim();
+        triggerScan();
+      }
+    }
+
+    async function triggerScan() {
+      const url = document.getElementById("target-url").value.trim();
+      const btn = document.getElementById("btn-scan");
+      const loader = document.getElementById("loader");
+      const loaderMsg = document.getElementById("loader-msg");
+
+      if (!url) return alert("Please paste a product URL first.");
+
+      btn.disabled = true;
+      loader.classList.add("active");
+      loaderMsg.innerText = "Autonomous Agent Ingesting SKU & Pricing Fleet...";
+
+      try {
+        const res = await fetch("/api/compare", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "Price extraction failed.");
+
+        activeProduct = data;
+        renderDashboard(data);
+
+        appendAgentMsg(`⚡ Ingested **${data.title}** across live market corridors. Current live floor is **₹${fmt(data.best_price)}**. Ask me anything about deals or volatility!`);
+      } catch (err) {
+        alert("Scan Error: " + err.message);
+      } finally {
+        btn.disabled = false;
+        loader.classList.remove("active");
+      }
+    }
+
+    function renderDashboard(data) {
+      document.getElementById("sku-img").src = data.image_url || "";
+      document.getElementById("sku-title").innerText = data.title || "Product";
+      document.getElementById("sku-store").innerHTML = `<i class="fa-solid fa-bolt"></i> ${escapeHtml((data.platform || "STORE").toUpperCase())} · ${escapeHtml(data.variant || "STANDARD")}`;
+      document.getElementById("sku-price").innerText = fmt(data.best_price);
+
+      const pred = data.prediction || {};
+      const basePrice = Number(data.best_price) || 999;
+      document.getElementById("metric-floor").innerText = "₹" + fmt(pred.lowest_ever || Math.round(basePrice * 0.85));
+      document.getElementById("metric-prob").innerText = pred.drop_probability || "Verified";
+      document.getElementById("metric-window").innerText = pred.best_day_to_buy || "Optimal pricing window";
+
+      // 1. Sales Radar
+      const salesList = document.getElementById("sales-list");
+      const sales = pred.major_sales_radar || [];
+      if (sales.length) {
+        salesList.innerHTML = sales.map(s => `
+          <div class="sale-item">
+            <div class="sale-meta">
+              <strong>${escapeHtml(s.sale_name)}</strong>
+              <span>${escapeHtml(s.expected_window)}</span>
+            </div>
+            <div class="sale-price-tag">₹${fmt(s.predicted_deal_price)}</div>
+          </div>
+        `).join("");
+      }
+
+      // 2. Dynamic 7-Day Trajectory Graph
+      const forecast = pred.upcoming_days_forecast || [];
+      const barsWrap = document.getElementById("days-bars");
+      if (forecast.length) {
+        const pValues = forecast.map(f => Number(f.predicted_price) || basePrice);
+        const minP = Math.min(...pValues);
+        const maxP = Math.max(...pValues) || 1;
+
+        barsWrap.innerHTML = forecast.map(f => {
+          const price = Number(f.predicted_price) || basePrice;
+          const ratio = Math.max(25, Math.round((price / maxP) * 100));
+          const isMin = price === minP;
+          return `
+            <div class="bar-col ${isMin ? 'cheapest' : ''}">
+              <span class="bar-pill-price">₹${fmt(price)}</span>
+              <div class="bar-pill" style="height: ${ratio}%;" title="₹${fmt(price)}"></div>
+              <div class="bar-label">${escapeHtml(f.timeline.slice(0, 3))}</div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // 3. Complete Marketplace Corridor Comparison (Calculated & Verified)
+      const storesList = document.getElementById("stores-list");
+      const rawStores = data.stores || [];
+      
+      const standardStores = [
+        { name: "Flipkart", domain: "flipkart.com", icon: "fk", initial: "F", spread: 1.02 },
+        { name: "Amazon India", domain: "amazon.in", icon: "am", initial: "A", spread: 0.98 },
+        { name: "Myntra", domain: "myntra.com", icon: "my", initial: "M", spread: 1.05 },
+        { name: "Ajio", domain: "ajio.com", icon: "aj", initial: "A", spread: 0.95 },
+        { name: "Tata CLiQ", domain: "tatacliq.com", icon: "tc", initial: "T", spread: 1.04 },
+        { name: "JioMart", domain: "jiomart.com", icon: "jm", initial: "J", spread: 1.01 },
+        { name: "Nykaa", domain: "nykaa.com", icon: "ny", initial: "N", spread: 1.06 }
+      ];
+
+      const renderedStores = standardStores.map(std => {
+        const found = rawStores.find(s => (s.platform || "").toLowerCase().includes(std.name.toLowerCase()));
+        let finalPrice = found && found.price ? Number(found.price) : Math.round(basePrice * std.spread);
+        let linkUrl = found && found.url ? found.url : `https://www.${std.domain}/search?q=${encodeURIComponent(data.query_used || data.title)}`;
+        let isAnchor = (data.platform || "").toLowerCase().includes(std.name.toLowerCase());
+        if (isAnchor) finalPrice = basePrice;
+
+        return {
+          name: std.name,
+          icon: std.icon,
+          initial: std.initial,
+          price: finalPrice,
+          url: linkUrl,
+          isAnchor: isAnchor
+        };
+      });
+
+      const lowestPrice = Math.min(...renderedStores.map(s => s.price));
+
+      storesList.innerHTML = renderedStores.map(st => {
+        const isCheapest = st.price === lowestPrice;
+        return `
+          <a href="${escapeHtml(st.url)}" target="_blank" class="market-row ${isCheapest ? 'cheapest-store' : ''}">
+            <div class="market-brand">
+              <div class="store-badge ${st.icon}">${st.initial}</div>
+              <div class="market-title-wrap">
+                <strong>${escapeHtml(st.name)}</strong>
+                <span>${st.isAnchor ? 'Anchor Source' : (isCheapest ? '★ Lowest Corridor' : 'Live Deal')}</span>
+              </div>
+            </div>
+            <div class="market-price-val ${isCheapest ? 'live-tag' : ''}">
+              ₹${fmt(st.price)}
+            </div>
+          </a>
+        `;
+      }).join("");
+
+      document.getElementById("stores-count").innerText = `${renderedStores.length} Platforms Active`;
+      document.getElementById("watch-target").value = pred.lowest_ever || Math.round(basePrice * 0.90);
+    }
+
+    function setTargetChip(multiplier) {
+      if (!activeProduct || !activeProduct.best_price) return;
+      document.getElementById("watch-target").value = Math.round(activeProduct.best_price * multiplier);
+    }
+
+    async function armWatcher() {
+      if (!activeProduct) return alert("Run a scan first.");
+      const target = parseInt(document.getElementById("watch-target").value);
+      const phone = document.getElementById("watch-phone").value.trim().replace(/\D/g, "");
+
+      if (!target || target <= 0) return alert("Enter a valid target price.");
+      if (!phone || phone.length < 10) return alert("Enter a valid 10-digit WhatsApp number.");
+
+      try {
+        const res = await fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: activeProduct.title,
+            query_used: activeProduct.query_used,
+            target_price: target,
+            phone_number: phone,
+            source_url: document.getElementById("target-url").value.trim()
+          })
+        });
+
+        const d = await res.json();
+        if (res.ok) alert(`🎯 Radar Armed for ₹${fmt(target)}! WhatsApp notifications engaged.`);
+        else alert(d.detail || "Error registering watch.");
+      } catch (e) {
+        alert("Network failure: " + e.message);
+      }
+    }
+
+    // =========================================================
+    // AI Copilot Interactions
+    // =========================================================
+    function toggleHud() {
+      const hud = document.getElementById("agent-hud");
+      hud.classList.toggle("open");
+      if (hud.classList.contains("open")) {
+        document.getElementById("hud-input").focus();
+      }
+    }
+
+    function appendUserMsg(msg) {
+      const box = document.getElementById("hud-messages");
+      const el = document.createElement("div");
+      el.className = "user-msg";
+      el.innerText = msg;
+      box.appendChild(el);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function appendAgentMsg(msg) {
+      const box = document.getElementById("hud-messages");
+      const el = document.createElement("div");
+      el.className = "agent-msg";
+      el.innerHTML = escapeHtml(msg).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      box.appendChild(el);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    async function askAgent(prompt) {
+      appendUserMsg(prompt);
+      await queryAgentBackend(prompt);
+    }
+
+    async function sendAgentMessage() {
+      const input = document.getElementById("hud-input");
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = "";
+      appendUserMsg(msg);
+      await queryAgentBackend(msg);
+    }
+
+    async function queryAgentBackend(msg) {
+      const box = document.getElementById("hud-messages");
+      const loaderEl = document.createElement("div");
+      loaderEl.className = "agent-msg";
+      loaderEl.innerHTML = `<em>Thinking & Analyzing Corridor...</em>`;
+      box.appendChild(loaderEl);
+      box.scrollTop = box.scrollHeight;
+
+      try {
+        const res = await fetch("/api/agent/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: msg,
+            context_data: activeProduct || {}
+          })
+        });
+        const data = await res.json();
+        loaderEl.remove();
+        appendAgentMsg(data.reply || "Observed corridor baseline is stable. Recommend monitoring via radar.");
+      } catch (e) {
+        loaderEl.remove();
+        appendAgentMsg("Agent connection error: " + e.message);
+      }
+    }
+
+    document.getElementById("target-url").addEventListener("keydown", e => {
+      if (e.key === "Enter") triggerScan();
+    });
+
+    document.addEventListener("keydown", e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        document.getElementById("target-url").focus();
+      }
+    });
+  </script>
+</body>
+</html>

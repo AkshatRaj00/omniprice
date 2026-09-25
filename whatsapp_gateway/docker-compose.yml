@@ -1,0 +1,21 @@
+﻿version: '3.8'
+services:
+  omniprice-engine:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=\
+      - OPENROUTER_API_KEY=\
+      - WHATSAPP_GATEWAY=http://whatsapp-gateway:5001/send-message
+    volumes:
+      - ./omnidata.db:/app/omnidata.db
+    restart: unless-stopped
+
+  whatsapp-gateway:
+    build: ./whatsapp_gateway
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./whatsapp_gateway/auth_info_baileys:/app/auth_info_baileys
+    restart: unless-stopped

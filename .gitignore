@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+venv/
+omnidata.db
+price_tracker.db
+whatsapp_gateway/node_modules/
+whatsapp_gateway/auth_info_baileys/

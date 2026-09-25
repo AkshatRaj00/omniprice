@@ -1,0 +1,9 @@
+﻿cff-version: 1.2.0
+message: "If you use this software in your research or business, please cite it as below."
+authors:
+- family-names: "OnePersonAI"
+  given-names: "Core Team"
+title: "OmniPrice: Autonomous Price Intelligence & Real-Time Retail Arbitrage Engine"
+version: 1.0.0
+date-released: 2026-09-26
+url: "https://github.com/your-username/omniprice"

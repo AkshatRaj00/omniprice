@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /static/
+Disallow: /api/
+
+Sitemap: https://omniprice.onepersonai.in/sitemap.xml
